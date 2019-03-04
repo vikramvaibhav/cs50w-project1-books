@@ -1,0 +1,24 @@
+{% extends "layout.html" %}
+
+{% block title %}Book Review | Sign Up{% endblock %}
+
+{% block body %}
+<div class="container-fluid bg">
+<div class="row">
+    <div class="col-lg-5 offset-lg-2 col-md-6 offset-md-2 col-sm-8 offset-sm-2">
+    <form action="{{ url_for('signup') }}" class="form text-center p-top" method="POST">
+      <h3 class="mb-3 font-weight-normal">Sign Up</h3>
+     <p class="text-secondary">Create an account to print, share, and sell your books and ebooks</p>
+      <label for="inputEmail" class="sr-only">Email address</label>
+      <input type="email" name="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+      <label for="inputUsername" class="sr-only">Username</label>
+      <input type="text" name="username" id="inputUsername" class="form-control" placeholder="Username" required autofocus>
+      <label for="inputPassword" class="sr-only">Password</label>
+      <input type="password" name="password" id="inputPassword" class="form-control mb-3" placeholder="Password" required>
+      <button class="btn btn-lg btn-primary btn-block" type="submit">Sign Up</button>
+      <a href="{{ url_for('index') }}" class="btn btn-lg btn-secondary btn-block" type="submit">Have an account? Sign in</a>
+    </form>
+     </div>
+    </div>
+  </div>
+{% endblock %}

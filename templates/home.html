@@ -1,0 +1,48 @@
+{% extends "layout.html" %}
+
+{% block title %}Book Review | Home{% endblock %}
+
+{% block body %}
+<div class="container-fluid bg-home">
+  <header>
+    <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3">
+      <a href="{{ url_for('home')}}" class="my-0 mr-md-auto font-weight-normal text-secondary text-decoration-none"><h1 class="my-0 mr-md-auto font-weight-normal text-secondary">Book Review</h1>
+      <a href="{{ url_for('logout')}}" class="btn btn-outline-primary">Logout</a>
+    </div>
+  </header>
+<div class="text-center">
+<h3 class="display-4 mt-5 mb-3 font-weight-normal"><red>S</red><green>e</green><blue>a</blue><yellow>r</yellow><red>c</red><blue>h</blue> <blue>H</blue><red>e</red><yellow>r</yellow><blue>e</blue</h3>
+<div class="col-md-8 offset-md-2">
+<form action="{{ url_for('home') }}" class="form" method="post">
+      <input class="form-control mt-3 mb-1" type="text" name="query" aria-label="Search">
+      <button type="submit" class="btn btn-outline-info">Search</button>
+</form>
+</div>
+</div>
+{% if results %}
+  <h3 class="my-4">Results</h3>
+  <div class="row mt-5">
+    {% for result in results %}
+    <div class="col-md-3 col-sm-6 mb-4">
+      <div class="card" style="width: 18rem;">
+        <div class="card-body">
+          <h5 class="card-title">{{ result.title }}</h5>
+          <p class="card-text">{{ result.author }}</p>
+          <p class="card-text">{{ result.year }}</p>
+          <a href="{{ url_for('book',bkisbn = result.isbn, book_id=result.book_id) }}" class="btn btn-primary">See Review</a>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+  {% else %}
+  <h1>{{ message }}</h1>
+{% endif %}
+</div>
+{% endblock %}
+<footer>
+
+</footer>
+{% block footer %}
+
+{% endblock %}

@@ -1,0 +1,90 @@
+{% extends "layout.html" %}
+
+{% block title %}Book Review | Book{% endblock %}
+
+{% block body %}
+<div class="container-fluid bg_book">
+  <header>
+    <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3">
+      <a href="{{ url_for('home')}}" class="my-0 mr-md-auto font-weight-normal text-secondary text-decoration-none"><h1 class="my-0 mr-md-auto font-weight-normal text-secondary">Book Review</h1>
+      <a href="{{ url_for('logout') }}" class="btn btn-outline-primary">Logout</a>
+    </div>
+  </header>
+    <div class="row mx-3 my-5">
+     <div class="col-md-2">
+     <div class="col-sm-12">
+     <img src="{{ review[1][8].text }}" class="img-thumbnail">
+     </div>
+     </div>
+     <div class="col-md-10">
+      <div class="col-sm-9">
+       <h2>{{ review.getchildren()[1].getchildren()[1].text }}</h2>
+       <h6 class="text-secondary">{{ review.getchildren()[1].getchildren()[10].text }}</h6>
+       <p> by {{ review.getchildren()[1].getchildren()[26].getchildren()[0].getchildren()[1].text }} </p>
+       <p>ISBN - {{ review.getchildren()[1].getchildren()[2].text }}</p>
+     </div>
+    </div>
+    </div>
+    <!-- About the Book-->
+     <div class="row">
+     <div class="col-md-6">
+      <div class="col-md-11">
+      <h5 class="card-title text-info" >Goodreads Review</h5>
+      <p class="text-secondary text-left">{{ review.getchildren()[1].getchildren()[27].text | safe }}</p>
+     </div>
+    </div>
+     <br>
+     <div class="col-md-6">
+      <div class="col-md-11">
+      {% if ressdb %}
+      <h5 class="card-title text-info">Book Review's Review</h5>
+      <p style="color:#660">{{ review.getchildren()[1].getchildren()[1].text }} Reviews</p>
+      <div class="card">
+      <div class="card-body">
+          <p>By <b class="text-success">{{ ressdb.username }}</b>&nbsp;&nbsp;
+          {% for n in range(ressdb.rating) %}
+          <i class="fas fa-star"></i>
+          {% endfor %}
+          &nbsp;on&nbsp;&nbsp;{{ ressdb.rating_time }}
+          </p>
+          <p class="card-text">{{ ressdb.comment }}</p>
+        </div>
+      </div>
+      {% else %}
+          <h5 class="card-title text-info">Submit Your Review</h5>
+          <form action="{{ url_for('review', bkisbn = request.args.get("bkisbn"), book_id = request.args.get("book_id")) }}" method="POST">
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="rating" value="1" checked>
+              <label class="form-check-label" for="exampleRadios1">1</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="rating"  value="2">
+              <label class="form-check-label">2</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="rating"  value="3">
+              <label class="form-check-label">3</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="rating"  value="4">
+              <label class="form-check-label">4</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="rating"  value="5">
+              <label class="form-check-label">5</label>
+            </div>
+            <div class="form-group">
+              <label for="exampleInputEmail1">Comment:</label>
+              <textarea class="form-control" name="comment" placeholder="" rows="5"></textarea>
+            </div>
+            <button type="submit" class="btn btn-outline-secondary">Submit</button>
+          </form>
+      {% endif %}
+    </div>
+    </div>
+    </div>
+{% endblock %}
+
+{% block footer %}
+
+{% endblock %}

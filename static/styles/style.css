@@ -1,0 +1,58 @@
+body, html {
+  height: 100%;
+}
+
+.bg {
+  /* The image used */
+  background-image: url(/static/img/img1.jpg);
+
+  /* Full height */
+  height: 100%;
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.bg_book {
+  /* The image used */
+  background-image: url(/static/img/img3.jpg);
+
+  /* Full height */
+  height: 120%;
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.bg-color {
+  background-color: #ECE9E6;
+}
+
+.p-top{
+  padding-top: 10rem;
+}
+
+red{
+color: #DB4437;
+}
+
+green{
+  color: #0F9D58;
+}
+
+yellow{
+  color: #F4B400;
+}
+
+blue{
+  color: #4285F4;
+}
+
+.star-rating {
+  line-height:32px;
+  font-size:1.25em;
+}
